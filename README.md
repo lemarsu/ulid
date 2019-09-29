@@ -39,7 +39,7 @@ For more information, see [ulid specs][ulid-specs]
    dependencies:
      ulid:
        github: lemarsu/ulid
-       version: 0.1.0
+       version: 0.1.1
    ```
 
 2. Run `shards install`
