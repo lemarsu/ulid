@@ -62,6 +62,15 @@ describe Ulid::ULID do
     ulid.to_s.should eq "CNK6ET39D9NPRVBEDXR72WKKEG"
   end
 
+  it "should return a custom inspect value" do
+    bytes = array_slice [
+      101, 102, 103, 104, 105, 106,
+      107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
+    ] of UInt8
+    ulid = Ulid::ULID.new(bytes)
+    ulid.inspect.should eq "#<Ulid::ULID CNK6ET39D9NPRVBEDXR72WKKEG>"
+  end
+
   it "should instantiate from a string" do
     ulid = Ulid::ULID.new "CNK6ET39D9NPRVBEDXR72WKKEG"
     ulid.to_s.should eq "CNK6ET39D9NPRVBEDXR72WKKEG"

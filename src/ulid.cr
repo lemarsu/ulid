@@ -44,8 +44,14 @@ module Ulid
       initialize(Base32.decode(str, Base32::Crockford))
     end
 
-    def to_s : String
-      Base32.encode(@bytes, Base32::Crockford)
+    def to_s(io : IO) : Void
+      io << Base32.encode(@bytes, Base32::Crockford)
+    end
+
+    def inspect(io : IO) : Void
+      io << "#<" << self.class.name << " "
+      to_s(io)
+      io << ">"
     end
 
     def time : Time
