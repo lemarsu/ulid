@@ -71,6 +71,16 @@ describe Ulid::ULID do
     ulid.inspect.should eq "#<Ulid::ULID CNK6ET39D9NPRVBEDXR72WKKEG>"
   end
 
+  it "should have the same hash for the same bytes" do
+    bytes = array_slice [
+      101, 102, 103, 104, 105, 106,
+      107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
+    ] of UInt8
+    ulid1 = Ulid::ULID.new("CNK6ET39D9NPRVBEDXR72WKKEG")
+    ulid2 = Ulid::ULID.new("CNK6ET39D9NPRVBEDXR72WKKEG")
+    ulid1.hash.should eq ulid2.hash
+  end
+
   it "should instantiate from a string" do
     ulid = Ulid::ULID.new "CNK6ET39D9NPRVBEDXR72WKKEG"
     ulid.to_s.should eq "CNK6ET39D9NPRVBEDXR72WKKEG"

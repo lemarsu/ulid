@@ -10,6 +10,8 @@ module Ulid
 
     BYTE_COUNT = 16
 
+    def_hash @bytes
+
     getter bytes : Bytes
 
     def initialize(bytes : Bytes)
