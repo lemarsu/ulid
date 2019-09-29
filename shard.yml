@@ -1,0 +1,18 @@
+name: ulid
+version: 0.1.0
+
+authors:
+  - LeMarsu <ch.ruelle at lemarsu.com>
+
+crystal: 0.31.0
+
+dependencies:
+  base32:
+    github: lemarsu/base32
+    version: 0.1.1
+
+development_dependencies:
+  timecop:
+    github: crystal-community/timecop.cr
+
+license: MIT
