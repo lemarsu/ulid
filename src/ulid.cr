@@ -13,6 +13,11 @@ module Ulid
     def_hash @bytes
 
     getter bytes : Bytes
+    getter time : Time do
+      ms = 0u64
+      6.times { |i| ms |= @bytes[5 - i].to_u64 << (i * 8) }
+      Time.unix_ms(ms)
+    end
 
     def initialize(bytes : Bytes)
       initialize(bytes, true)
@@ -54,13 +59,6 @@ module Ulid
       io << "#<" << self.class.name << " "
       to_s(io)
       io << ">"
-    end
-
-    def time : Time
-      return time if time = @time
-      ms = 0u64
-      6.times { |i| ms |= @bytes[5 - i].to_u64 << (i * 8) }
-      @time = Time.unix_ms(ms)
     end
 
     def <=>(other : ULID)
