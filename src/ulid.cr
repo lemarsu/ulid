@@ -1,7 +1,7 @@
 require "base32"
 
 module Ulid
-  VERSION = "0.1.1"
+  VERSION = "0.1.2"
 
   class ULID
     class Error < Exception; end
