@@ -33,12 +33,12 @@ module Ulid
     end
 
     def initialize(time : Time, *, generator : Random = Random::PCG32)
-      random = generate_random_bytes(generator)
+      random = generator.random_bytes(10)
       initialize(time, random)
     end
 
     def initialize(*, generator : Random = Random::PCG32.new)
-      random = generate_random_bytes(generator)
+      random = generator.random_bytes(10)
       initialize(Time.utc, random)
     end
 
@@ -65,10 +65,6 @@ module Ulid
 
     def <=>(other : ULID)
       @bytes.<=>(other.@bytes)
-    end
-
-    private def generate_random_bytes(generator : Random)
-      Bytes.new(10) { |i| generator.rand(256).to_u8 }
     end
   end
 end
